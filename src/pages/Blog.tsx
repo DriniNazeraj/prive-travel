@@ -1,8 +1,20 @@
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
 import heroImg from "@/assets/blog-hero.jpg";
+import image1 from "@/assets/image1.jpg";
+import image2 from "@/assets/image2.jpg";
+import image3 from "@/assets/image3.jpg";
+import image4 from "@/assets/image4.jpg";
+import image5 from "@/assets/image5.jpg";
+import image6 from "@/assets/image6.jpg";
+import image7 from "@/assets/image7.png";
+import image8 from "@/assets/image8.png";
+import image9 from "@/assets/image9.png";
+import image10 from "@/assets/image10.png";
+import image12 from "@/assets/image12.png";
+
+const blogImages = [image1, image2, image3, image4, image5, image6, image7, image12, image9, image10];
 
 const Blog = () => {
   const { t } = useTranslation();
@@ -61,7 +73,9 @@ const Blog = () => {
       </section>
 
       {/* Categories */}
-      {categories.map((cat, ci) => (
+      {categories.map((cat, ci) => {
+        const imageOffset = categories.slice(0, ci).reduce((sum, c) => sum + c.articles.length, 0);
+        return (
         <section key={ci} className={`section-padding ${ci % 2 === 1 ? "bg-secondary/30" : ""}`}>
           <div className="container-luxury">
             <SectionHeading title={cat.name} />
@@ -75,7 +89,7 @@ const Blog = () => {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="glass-card rounded-xl overflow-hidden group cursor-pointer"
                 >
-                  <div className="h-48 bg-muted" />
+                  <img src={blogImages[imageOffset + i]} alt={article.title} className="h-48 w-full object-cover" />
                   <div className="p-6">
                     <p className="font-body text-[10px] tracking-[0.2em] uppercase text-primary mb-2">
                       {cat.name}
@@ -92,7 +106,8 @@ const Blog = () => {
             </div>
           </div>
         </section>
-      ))}
+        );
+      })}
     </main>
   );
 };

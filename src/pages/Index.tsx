@@ -6,6 +6,11 @@ import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
 import heroImg from "@/assets/hero-home.jpg";
 import aboutImg from "@/assets/about-portrait.jpg";
+import image5 from "@/assets/image5.jpg";
+import image6 from "@/assets/image6.jpg";
+import image12 from "@/assets/image12.png";
+
+const blogImages = [image5, image12, image6];
 
 const Index = () => {
   const { t } = useTranslation();
@@ -227,7 +232,7 @@ const Index = () => {
                 transition={{ duration: 0.6, delay: i * 0.1 }}
               >
                 <Link to="/blog" className="block glass-card rounded-xl overflow-hidden group">
-                  <div className="h-48 bg-muted" />
+                  <img src={blogImages[i]} alt={post.title} className="h-48 w-full object-cover" />
                   <div className="p-6">
                     <p className="font-body text-[10px] tracking-[0.2em] uppercase text-primary mb-2">
                       {post.cat}

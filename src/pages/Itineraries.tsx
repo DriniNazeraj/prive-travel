@@ -4,7 +4,7 @@ import { Check, FileText, Map, Utensils, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
-import heroImg from "@/assets/itineraries-hero.jpg";
+import heroImg from "@/assets/image1.jpg";
 
 const Itineraries = () => {
   const { t } = useTranslation();
