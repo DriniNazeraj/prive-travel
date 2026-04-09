@@ -14,7 +14,7 @@ import image10 from "@/assets/image10.png";
 import image11 from "@/assets/image11.png";
 import image12 from "@/assets/image12.png";
 
-const blogImages = [image1, image2, image3, image11, image5, image6, image7, image12, image9, image10];
+const blogImages = [image1, image2, image3, image11, image5, image6, image12, image7, image9, image10];
 
 const Blog = () => {
   const { t } = useTranslation();
