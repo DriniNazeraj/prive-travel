@@ -5,16 +5,16 @@ import heroImg from "@/assets/blog-hero.jpg";
 import image1 from "@/assets/image1.jpg";
 import image2 from "@/assets/image2.jpg";
 import image3 from "@/assets/image3.jpg";
-import image4 from "@/assets/image4.jpg";
 import image5 from "@/assets/image5.jpg";
 import image6 from "@/assets/image6.jpg";
 import image7 from "@/assets/image7.png";
 import image8 from "@/assets/image8.png";
 import image9 from "@/assets/image9.png";
 import image10 from "@/assets/image10.png";
+import image11 from "@/assets/image11.png";
 import image12 from "@/assets/image12.png";
 
-const blogImages = [image1, image2, image3, image4, image5, image6, image7, image12, image9, image10];
+const blogImages = [image1, image2, image3, image11, image5, image6, image7, image12, image9, image10];
 
 const Blog = () => {
   const { t } = useTranslation();
