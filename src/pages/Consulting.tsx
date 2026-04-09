@@ -4,7 +4,7 @@ import { Lightbulb, Package, Building2, Award, Megaphone, Gamepad2, FileCheck, F
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
-import heroImg from "@/assets/consulting-hero.jpg";
+import heroImg from "@/assets/consulting-hero.webp";
 
 const sectionIcons = [
   [Lightbulb, Package, Building2],
