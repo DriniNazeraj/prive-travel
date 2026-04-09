@@ -56,7 +56,7 @@ const Consulting = () => {
       {/* Hero */}
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
-          <img src={heroImg} alt="Business consulting" className="w-full h-full object-cover" width={1920} height={1080} />
+          <img src={heroImg} alt="Business consulting" className="w-full h-full object-cover object-bottom" width={1920} height={1080} />
           <div className="absolute inset-0 bg-foreground/60" />
         </div>
         <div className="relative z-10 text-center px-4">
