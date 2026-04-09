@@ -3,10 +3,46 @@ import { motion } from "framer-motion";
 import { MapPin, Briefcase, GraduationCap, ChevronRight, Star, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
+import { useTranslation } from "react-i18next";
 import heroImg from "@/assets/hero-home.jpg";
 import aboutImg from "@/assets/about-portrait.jpg";
 
 const Index = () => {
+  const { t } = useTranslation();
+
+  const services = [
+    {
+      icon: MapPin,
+      title: t("home.service1Title"),
+      desc: t("home.service1Desc"),
+      link: "/itineraries",
+    },
+    {
+      icon: Briefcase,
+      title: t("home.service2Title"),
+      desc: t("home.service2Desc"),
+      link: "/consulting",
+    },
+    {
+      icon: GraduationCap,
+      title: t("home.service3Title"),
+      desc: t("home.service3Desc"),
+      link: "/consulting",
+    },
+  ];
+
+  const testimonials = [
+    { name: t("home.testimonial1Name"), loc: t("home.testimonial1Loc"), text: t("home.testimonial1Text") },
+    { name: t("home.testimonial2Name"), loc: t("home.testimonial2Loc"), text: t("home.testimonial2Text") },
+    { name: t("home.testimonial3Name"), loc: t("home.testimonial3Loc"), text: t("home.testimonial3Text") },
+  ];
+
+  const blogPosts = [
+    { cat: t("home.blogCat1"), title: t("home.blogPost1Title"), excerpt: t("home.blogPost1Excerpt") },
+    { cat: t("home.blogCat2"), title: t("home.blogPost2Title"), excerpt: t("home.blogPost2Excerpt") },
+    { cat: t("home.blogCat3"), title: t("home.blogPost3Title"), excerpt: t("home.blogPost3Excerpt") },
+  ];
+
   return (
     <main>
       {/* Hero */}
@@ -22,7 +58,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="subtitle-text text-background/70 mb-6"
           >
-            Privé Travel Design
+            {t("home.subtitle")}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -30,7 +66,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="heading-display text-5xl sm:text-6xl lg:text-7xl text-background mb-4"
           >
-            Brunilda
+            {t("home.heroTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -38,7 +74,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="font-heading text-xl sm:text-2xl text-background/80 italic mb-10"
           >
-            Your Private Gateway to Albania
+            {t("home.heroTagline")}
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -47,10 +83,10 @@ const Index = () => {
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button variant="gold" size="lg" asChild>
-              <Link to="/itineraries">Explore Private Itineraries</Link>
+              <Link to="/itineraries">{t("home.exploreBtn")}</Link>
             </Button>
             <Button variant="gold-outline" size="lg" className="border-background/50 text-background hover:bg-background hover:text-foreground" asChild>
-              <Link to="/contact">Book Consultation</Link>
+              <Link to="/contact">{t("home.bookBtn")}</Link>
             </Button>
           </motion.div>
         </div>
@@ -93,20 +129,17 @@ const Index = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <p className="subtitle-text mb-4">About Brunilda</p>
+              <p className="subtitle-text mb-4">{t("home.aboutSubtitle")}</p>
               <h2 className="heading-section text-foreground mb-6">
-                25 Years Exploring the Soul of Albania
+                {t("home.aboutTitle")}
               </h2>
               <div className="luxury-divider !mx-0" />
               <p className="font-body text-muted-foreground leading-relaxed mb-8">
-                A tourism PhD, travel designer, mentor, and Albania's foremost
-                expert with over 25 years of experience uncovering the country's
-                hidden treasures. From the Albanian Riviera to the remote mountain
-                villages, every journey is crafted with intimate local knowledge.
+                {t("home.aboutDesc")}
               </p>
               <Button variant="gold-outline" asChild>
                 <Link to="/about">
-                  Learn More About Me <ArrowRight size={14} />
+                  {t("home.learnMore")} <ArrowRight size={14} />
                 </Link>
               </Button>
             </motion.div>
@@ -118,33 +151,14 @@ const Index = () => {
       <section className="section-padding bg-secondary/50">
         <div className="container-luxury">
           <SectionHeading
-            subtitle="Services"
-            title="Crafted Experiences"
-            description="From bespoke itineraries to business mentoring, every service is designed with precision and passion."
+            subtitle={t("home.servicesSubtitle")}
+            title={t("home.servicesTitle")}
+            description={t("home.servicesDesc")}
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: MapPin,
-                title: "Private Itinerary Design",
-                desc: "Bespoke travel plans crafted around your passions, with hidden gems only a local expert knows.",
-                link: "/itineraries",
-              },
-              {
-                icon: Briefcase,
-                title: "Business & Tourism Consulting",
-                desc: "Strategic guidance for tourism startups, hospitality businesses, and grant applications.",
-                link: "/consulting",
-              },
-              {
-                icon: GraduationCap,
-                title: "Mentoring & Grants",
-                desc: "Professional training, academy programs, and technical assistance for tourism growth.",
-                link: "/consulting",
-              },
-            ].map((service, i) => (
+            {services.map((service, i) => (
               <motion.div
-                key={service.title}
+                key={i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -168,15 +182,11 @@ const Index = () => {
       {/* Testimonials */}
       <section className="section-padding">
         <div className="container-luxury">
-          <SectionHeading subtitle="Testimonials" title="What Travelers Say" />
+          <SectionHeading subtitle={t("home.testimonialsSubtitle")} title={t("home.testimonialsTitle")} />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { name: "Sarah M.", loc: "London, UK", text: "Brunilda transformed our Albania trip into something magical. Every detail was perfect." },
-              { name: "Marco R.", loc: "Milan, Italy", text: "The hidden gems she revealed were beyond anything we could find online. Truly private experiences." },
-              { name: "Anna K.", loc: "Berlin, Germany", text: "Professional, knowledgeable, and passionate. The best travel consultant we've ever worked with." },
-            ].map((t, i) => (
+            {testimonials.map((item, i) => (
               <motion.div
-                key={t.name}
+                key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -189,10 +199,10 @@ const Index = () => {
                   ))}
                 </div>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed italic mb-6">
-                  "{t.text}"
+                  "{item.text}"
                 </p>
-                <p className="font-heading text-lg">{t.name}</p>
-                <p className="font-body text-xs text-muted-foreground">{t.loc}</p>
+                <p className="font-heading text-lg">{item.name}</p>
+                <p className="font-body text-xs text-muted-foreground">{item.loc}</p>
               </motion.div>
             ))}
           </div>
@@ -203,18 +213,14 @@ const Index = () => {
       <section className="section-padding bg-secondary/50">
         <div className="container-luxury">
           <SectionHeading
-            subtitle="Journal"
-            title="Latest Stories"
-            description="Discoveries, analysis, and stories from 25 years exploring Albania."
+            subtitle={t("home.blogSubtitle")}
+            title={t("home.blogTitle")}
+            description={t("home.blogDesc")}
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { cat: "Discoveries", title: "Beyond the Map: Albania's Privé Destinations", excerpt: "Hidden coastlines, mountain villages, and secret trails revealed." },
-              { cat: "Economy", title: "How to Build an Albergo Diffuso", excerpt: "Transforming heritage houses into distributed hospitality experiences." },
-              { cat: "Heritage", title: "Albania's Castles Through Storytelling", excerpt: "A journey through centuries of history, told through stone walls." },
-            ].map((post, i) => (
+            {blogPosts.map((post, i) => (
               <motion.div
-                key={post.title}
+                key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -237,7 +243,7 @@ const Index = () => {
           </div>
           <div className="text-center mt-12">
             <Button variant="gold-outline" asChild>
-              <Link to="/blog">View All Articles <ArrowRight size={14} /></Link>
+              <Link to="/blog">{t("home.viewAll")} <ArrowRight size={14} /></Link>
             </Button>
           </div>
         </div>
@@ -250,13 +256,13 @@ const Index = () => {
           <div className="absolute inset-0 bg-foreground/70" />
         </div>
         <div className="relative z-10 text-center px-4">
-          <h2 className="heading-section text-background mb-4">Begin Your Albanian Journey</h2>
+          <h2 className="heading-section text-background mb-4">{t("home.ctaTitle")}</h2>
           <div className="luxury-divider bg-primary" />
           <p className="font-body text-background/70 mb-10 max-w-xl mx-auto">
-            Let Brunilda design your perfect Albanian experience — from the first idea to the last sunset.
+            {t("home.ctaDesc")}
           </p>
           <Button variant="gold" size="lg" asChild>
-            <Link to="/contact">Book Your Consultation</Link>
+            <Link to="/contact">{t("home.ctaBtn")}</Link>
           </Button>
         </div>
       </section>

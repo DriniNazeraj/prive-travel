@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, Instagram, Facebook } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
+  const links = [
+    { label: t("nav.about"), path: "/about" },
+    { label: t("nav.itineraries"), path: "/itineraries" },
+    { label: t("nav.consulting"), path: "/consulting" },
+    { label: t("nav.blog"), path: "/blog" },
+    { label: t("nav.contact"), path: "/contact" },
+  ];
+
   return (
     <footer className="bg-foreground text-background">
       <div className="container-luxury section-padding">
@@ -13,22 +24,15 @@ const Footer = () => {
               Privé Travel Design
             </p>
             <p className="font-body text-sm text-background/60 leading-relaxed">
-              Your Private Gateway to Albania. Bespoke travel experiences crafted
-              with 25 years of expertise.
+              {t("footer.tagline")}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-heading text-lg mb-6">Explore</h4>
+            <h4 className="font-heading text-lg mb-6">{t("footer.explore")}</h4>
             <div className="flex flex-col gap-3">
-              {[
-                { label: "About", path: "/about" },
-                { label: "Private Itineraries", path: "/itineraries" },
-                { label: "Mentoring & Grants", path: "/consulting" },
-                { label: "Blog", path: "/blog" },
-                { label: "Contact", path: "/contact" },
-              ].map((link) => (
+              {links.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
@@ -42,7 +46,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-heading text-lg mb-6">Get in Touch</h4>
+            <h4 className="font-heading text-lg mb-6">{t("footer.getInTouch")}</h4>
             <div className="flex flex-col gap-4">
               <a
                 href="mailto:hello@brunildaprive.com"
@@ -72,7 +76,7 @@ const Footer = () => {
 
         <div className="border-t border-background/10 mt-16 pt-8 text-center">
           <p className="font-body text-xs text-background/40 tracking-widest">
-            © {new Date().getFullYear()} Brunilda: Privé Travel Design. All rights reserved.
+            © {new Date().getFullYear()} Brunilda: Privé Travel Design. {t("footer.rights")}
           </p>
         </div>
       </div>

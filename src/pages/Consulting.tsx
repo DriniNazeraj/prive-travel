@@ -3,31 +3,38 @@ import { motion } from "framer-motion";
 import { Lightbulb, Package, Building2, Award, Megaphone, Gamepad2, FileCheck, FileText, BarChart3 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
+import { useTranslation } from "react-i18next";
 import heroImg from "@/assets/consulting-hero.jpg";
 
-const sections = [
+const sectionIcons = [
+  [Lightbulb, Package, Building2],
+  [Award, Megaphone, Gamepad2],
+  [FileCheck, FileText, BarChart3],
+];
+
+const sectionKeys = [
   {
-    title: "Startup & Tourism Business Mentoring",
+    titleKey: "consulting.section1Title",
     items: [
-      { icon: Lightbulb, label: "Potential Discovery", desc: "Identify your strengths and market positioning." },
-      { icon: Package, label: "Offer Structuring", desc: "Create tourism packages that combine tradition with modern demand." },
-      { icon: Building2, label: "Albergo Diffuso Consulting", desc: "Transform heritage houses into distributed hospitality experiences." },
+      { labelKey: "consulting.s1Item1Label", descKey: "consulting.s1Item1Desc" },
+      { labelKey: "consulting.s1Item2Label", descKey: "consulting.s1Item2Desc" },
+      { labelKey: "consulting.s1Item3Label", descKey: "consulting.s1Item3Desc" },
     ],
   },
   {
-    title: "Professional Training Academy",
+    titleKey: "consulting.section2Title",
     items: [
-      { icon: Award, label: "Hospitality & Service", desc: "Standards training for hotels and restaurants — Made in Albania." },
-      { icon: Megaphone, label: "Marketing & Communication", desc: "Digital presence and storytelling for tourism businesses." },
-      { icon: Gamepad2, label: "Gamification & Innovation", desc: "Creative engagement strategies for memorable guest experiences." },
+      { labelKey: "consulting.s2Item1Label", descKey: "consulting.s2Item1Desc" },
+      { labelKey: "consulting.s2Item2Label", descKey: "consulting.s2Item2Desc" },
+      { labelKey: "consulting.s2Item3Label", descKey: "consulting.s2Item3Desc" },
     ],
   },
   {
-    title: "Technical / Grant Assistance",
+    titleKey: "consulting.section3Title",
     items: [
-      { icon: FileCheck, label: "Standardization Procedures", desc: "Quality standards and certification guidance." },
-      { icon: FileText, label: "Grant Application Consulting", desc: "Navigate donor programs and secure funding." },
-      { icon: BarChart3, label: "Business Plans & Strategy", desc: "Comprehensive business planning for tourism ventures." },
+      { labelKey: "consulting.s3Item1Label", descKey: "consulting.s3Item1Desc" },
+      { labelKey: "consulting.s3Item2Label", descKey: "consulting.s3Item2Desc" },
+      { labelKey: "consulting.s3Item3Label", descKey: "consulting.s3Item3Desc" },
     ],
   },
 ];
@@ -35,11 +42,12 @@ const sections = [
 const partners = ["GIZ", "BERZH", "Swiss Contact", "UNDP", "EU Programs", "World Bank"];
 
 const Consulting = () => {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: "", email: "", business: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you! We'll be in touch soon.");
+    alert(t("consulting.formSuccess"));
     setForm({ name: "", email: "", business: "", message: "" });
   };
 
@@ -52,34 +60,37 @@ const Consulting = () => {
           <div className="absolute inset-0 bg-foreground/60" />
         </div>
         <div className="relative z-10 text-center px-4">
-          <p className="subtitle-text text-background/70 mb-4">Mentoring & Grants</p>
-          <h1 className="heading-display text-background mb-4">From Idea to Destination</h1>
+          <p className="subtitle-text text-background/70 mb-4">{t("consulting.heroSubtitle")}</p>
+          <h1 className="heading-display text-background mb-4">{t("consulting.heroTitle")}</h1>
           <p className="font-heading text-xl text-background/80 italic">
-            Professional support for tourism growth in Albania.
+            {t("consulting.heroTagline")}
           </p>
         </div>
       </section>
 
       {/* Services */}
-      {sections.map((section, si) => (
-        <section key={section.title} className={`section-padding ${si % 2 === 1 ? "bg-secondary/30" : ""}`}>
+      {sectionKeys.map((section, si) => (
+        <section key={si} className={`section-padding ${si % 2 === 1 ? "bg-secondary/30" : ""}`}>
           <div className="container-luxury">
-            <SectionHeading title={section.title} />
+            <SectionHeading title={t(section.titleKey)} />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {section.items.map((item, i) => (
-                <motion.div
-                  key={item.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="glass-card rounded-xl p-8"
-                >
-                  <item.icon className="text-primary mb-4" size={28} strokeWidth={1.5} />
-                  <h3 className="font-heading text-xl mb-2">{item.label}</h3>
-                  <p className="font-body text-sm text-muted-foreground">{item.desc}</p>
-                </motion.div>
-              ))}
+              {section.items.map((item, i) => {
+                const Icon = sectionIcons[si][i];
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                    className="glass-card rounded-xl p-8"
+                  >
+                    <Icon className="text-primary mb-4" size={28} strokeWidth={1.5} />
+                    <h3 className="font-heading text-xl mb-2">{t(item.labelKey)}</h3>
+                    <p className="font-body text-sm text-muted-foreground">{t(item.descKey)}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -90,9 +101,9 @@ const Consulting = () => {
         <div className="container-luxury max-w-2xl">
           <SectionHeading
             light
-            subtitle="Let's Connect"
-            title="Have a Tourism Project?"
-            description="Let's Build It Together."
+            subtitle={t("consulting.formSubtitle")}
+            title={t("consulting.formTitle")}
+            description={t("consulting.formDesc")}
           />
           <motion.form
             onSubmit={handleSubmit}
@@ -103,9 +114,9 @@ const Consulting = () => {
             className="space-y-6"
           >
             {[
-              { key: "name", label: "Name", type: "text" },
-              { key: "email", label: "Email", type: "email" },
-              { key: "business", label: "Business / Project Name", type: "text" },
+              { key: "name", label: t("consulting.formName"), type: "text" },
+              { key: "email", label: t("consulting.formEmail"), type: "email" },
+              { key: "business", label: t("consulting.formBusiness"), type: "text" },
             ].map((field) => (
               <div key={field.key}>
                 <label className="font-body text-xs tracking-widest uppercase text-background/60 mb-2 block">
@@ -122,7 +133,7 @@ const Consulting = () => {
             ))}
             <div>
               <label className="font-body text-xs tracking-widest uppercase text-background/60 mb-2 block">
-                Message / Project Idea
+                {t("consulting.formMessage")}
               </label>
               <textarea
                 required
@@ -133,7 +144,7 @@ const Consulting = () => {
               />
             </div>
             <Button variant="gold" size="lg" className="w-full">
-              Submit Project Inquiry
+              {t("consulting.formSubmit")}
             </Button>
           </motion.form>
         </div>
@@ -142,7 +153,7 @@ const Consulting = () => {
       {/* Partners */}
       <section className="section-padding">
         <div className="container-luxury">
-          <SectionHeading subtitle="Trusted By" title="Success Partners" />
+          <SectionHeading subtitle={t("consulting.partnersSubtitle")} title={t("consulting.partnersTitle")} />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
             {partners.map((p, i) => (
               <motion.div

@@ -2,20 +2,23 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const navLinks = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Private Itineraries", path: "/itineraries" },
-  { label: "Mentoring & Grants", path: "/consulting" },
-  { label: "Blog", path: "/blog" },
-  { label: "Contact", path: "/contact" },
+  { key: "nav.home", path: "/" },
+  { key: "nav.about", path: "/about" },
+  { key: "nav.itineraries", path: "/itineraries" },
+  { key: "nav.consulting", path: "/consulting" },
+  { key: "nav.blog", path: "/blog" },
+  { key: "nav.contact", path: "/contact" },
 ];
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -57,19 +60,23 @@ const Navbar = () => {
                   : "text-foreground/70"
               }`}
             >
-              {link.label}
+              {t(link.key)}
             </Link>
           ))}
+          <LanguageSwitcher />
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="lg:hidden text-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        <div className="flex items-center gap-4 lg:hidden">
+          <LanguageSwitcher />
+          <button
+            className="text-foreground"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -92,7 +99,7 @@ const Navbar = () => {
                       : "text-foreground/70"
                   }`}
                 >
-                  {link.label}
+                  {t(link.key)}
                 </Link>
               ))}
             </div>

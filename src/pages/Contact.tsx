@@ -3,13 +3,15 @@ import { motion } from "framer-motion";
 import { Mail, Phone, Instagram, Facebook, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Thank you for your message! We'll respond shortly.");
+    alert(t("contact.success"));
     setForm({ name: "", email: "", subject: "", message: "" });
   };
 
@@ -19,9 +21,9 @@ const Contact = () => {
       <section className="relative pt-32 pb-20 section-padding bg-secondary/30">
         <div className="container-luxury">
           <SectionHeading
-            subtitle="Contact"
-            title="Let's Connect"
-            description="Ready to discover Albania? Get in touch and let's create something extraordinary."
+            subtitle={t("contact.subtitle")}
+            title={t("contact.title")}
+            description={t("contact.description")}
           />
         </div>
       </section>
@@ -39,9 +41,9 @@ const Contact = () => {
               className="space-y-6"
             >
               {[
-                { key: "name", label: "Name", type: "text" },
-                { key: "email", label: "Email", type: "email" },
-                { key: "subject", label: "Subject", type: "text" },
+                { key: "name", label: t("contact.name"), type: "text" },
+                { key: "email", label: t("contact.email"), type: "email" },
+                { key: "subject", label: t("contact.subject"), type: "text" },
               ].map((field) => (
                 <div key={field.key}>
                   <label className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-2 block">
@@ -58,7 +60,7 @@ const Contact = () => {
               ))}
               <div>
                 <label className="font-body text-xs tracking-widest uppercase text-muted-foreground mb-2 block">
-                  Message
+                  {t("contact.message")}
                 </label>
                 <textarea
                   required
@@ -69,7 +71,7 @@ const Contact = () => {
                 />
               </div>
               <Button variant="gold" size="lg" className="w-full">
-                Send Message
+                {t("contact.send")}
               </Button>
             </motion.form>
 
@@ -82,7 +84,7 @@ const Contact = () => {
               className="space-y-8"
             >
               <div>
-                <h3 className="font-heading text-2xl mb-6">Get in Touch</h3>
+                <h3 className="font-heading text-2xl mb-6">{t("contact.getInTouch")}</h3>
                 <div className="space-y-6">
                   <a
                     href="mailto:hello@brunildaprive.com"
@@ -114,7 +116,7 @@ const Contact = () => {
               </div>
 
               <div>
-                <h4 className="font-heading text-lg mb-4">Follow</h4>
+                <h4 className="font-heading text-lg mb-4">{t("contact.follow")}</h4>
                 <div className="flex gap-4">
                   <a href="#" className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:text-primary transition-colors" aria-label="Instagram">
                     <Instagram size={20} />
@@ -127,7 +129,7 @@ const Contact = () => {
 
               {/* Map placeholder */}
               <div className="rounded-xl overflow-hidden h-64 bg-muted flex items-center justify-center">
-                <p className="font-body text-sm text-muted-foreground">Map Placeholder</p>
+                <p className="font-body text-sm text-muted-foreground">{t("contact.mapPlaceholder")}</p>
               </div>
             </motion.div>
           </div>
