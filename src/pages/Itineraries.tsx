@@ -62,12 +62,12 @@ const Itineraries = () => {
       <section className="relative h-[60vh] min-h-[400px] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
           <img src={heroImg} alt="Luxury Albanian travel experience" className="w-full h-full object-cover" width={1920} height={1080} />
-          <div className="absolute inset-0 bg-foreground/50" />
+          <div className="absolute inset-0 bg-foreground/60" />
         </div>
-        <div className="relative z-10 text-center px-4">
-          <p className="subtitle-text text-background/70 mb-4">{t("itineraries.heroSubtitle")}</p>
-          <h1 className="heading-display text-background mb-4">{t("itineraries.heroTitle")}</h1>
-          <p className="font-heading text-xl text-background/80 italic">
+        <div className="relative z-10 text-center px-4" style={{ textShadow: "0 2px 12px rgba(0,0,0,0.5)" }}>
+          <p className="subtitle-text text-white mb-4">{t("itineraries.heroSubtitle")}</p>
+          <h1 className="heading-display text-white mb-4">{t("itineraries.heroTitle")}</h1>
+          <p className="font-heading text-xl text-white/90 italic">
             {t("itineraries.heroTagline")}
           </p>
         </div>
