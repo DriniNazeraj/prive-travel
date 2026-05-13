@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
-import aboutImg from "@/assets/about-portrait.jpg";
+import aboutImg from "@/assets/privephoto.jpg";
 import { MapPin, BookOpen, Users, Mountain, Award } from "lucide-react";
 
 const milestoneIcons = [MapPin, BookOpen, Users, Mountain, Award];
