@@ -38,7 +38,7 @@ const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="sticky top-28"
+              className="lg:sticky lg:top-28"
             >
               <img
                 src={aboutImg}

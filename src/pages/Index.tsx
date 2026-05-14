@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import SectionHeading from "@/components/SectionHeading";
 import { useTranslation } from "react-i18next";
 import heroImg from "@/assets/hero-home.jpg";
-import aboutImg from "@/assets/about-portrait.jpg";
+import aboutImg from "@/assets/privephoto.jpg";
 import image5 from "@/assets/image5.jpg";
 import image6 from "@/assets/image6.jpg";
 import image12 from "@/assets/image12.png";
